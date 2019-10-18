@@ -1,4 +1,4 @@
-#' Title
+#' Get a summary of the most recents commits
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
@@ -12,7 +12,7 @@ get_last_commits_summary <- function(owner, repo) {
     stringr::str_glue("/repos/{owner}/{repo}/commits?sha=master"))
 }
 
-#' Title
+#' Get all data about a commit
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
@@ -27,7 +27,7 @@ get_commit_by_sha <- function(owner, repo, commit_sha) {
     stringr::str_glue("/repos/{owner}/{repo}/git/commits/{commit_sha}"))
 }
 
-#' Title
+#' Get all data about a tree
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
@@ -42,7 +42,7 @@ get_tree_by_sha <- function(owner, repo, tree_sha) {
     stringr::str_glue("/repos/{owner}/{repo}/git/trees/{tree_sha}"))
 }
 
-#' Title
+#' Get all data about the most recent commit
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
@@ -62,7 +62,7 @@ get_last_commit <- function(owner, repo) {
 }
 
 
-#' Title
+#' Extract the tree's sha of a commit
 #'
 #' @param commit  Commit JSON already converted to R list
 #'
@@ -75,7 +75,10 @@ find_tree_sha_in_commit <- function(commit){
     purrr::pluck("tree", "sha")
 }
 
-#' Title
+#' List all files included in a tree
+#'
+#' This function will recursively also list the files in the trees
+#' listed in the root tree and so on
 #'
 #' @param tree Tree JSON already converted to R list
 #'

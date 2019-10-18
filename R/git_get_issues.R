@@ -16,7 +16,7 @@ get_issues <- function(owner, repo) {
 }
 
 
-#' Title
+#' Create an issue on a repo from R list data
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
