@@ -32,7 +32,7 @@ create_milestone <- function(owner, repo, milestone_content) {
             is.null(milestone_content$url))
 
   milestone_content$due_on <- format(milestone_content$due_on,
-                                     "%Y-%m-%dT%H:%M:%S")
+                                     "%Y-%m-%dT%H:%M:%S+06:00")
 
   url <- stringr::str_glue("/repos/{owner}/{repo}/milestones")
   do.call(POST_gh, append(list(url=url), milestone_content))
