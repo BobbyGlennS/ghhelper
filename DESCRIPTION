@@ -15,5 +15,6 @@ Imports:
     stringr,
     magrittr,
     tibble,
-    tidyr
+    tidyr,
+    lubridate
 RoxygenNote: 6.1.1
