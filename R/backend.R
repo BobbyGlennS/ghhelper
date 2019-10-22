@@ -46,3 +46,21 @@ POST_gh <- function(url, ..., res_type = "raw") {
          "raw" = api_res,
          "tibble" = gh_response_to_tibble(api_res))
 }
+
+#' Title
+#'
+#' @param url Relative endpoint url for Github API
+#' @param ... Named parameters to be sent as POST body content
+#' @param res_type Type of data returned
+#'
+#' @return
+#' @export
+#'
+#' @examples
+PATCH_gh <- function(url, ..., res_type = "raw") {
+  api_res <- gh::gh(url, ..., .method = "PATCH")
+
+  switch(res_type,
+         "raw" = api_res,
+         "tibble" = gh_response_to_tibble(api_res))
+}
