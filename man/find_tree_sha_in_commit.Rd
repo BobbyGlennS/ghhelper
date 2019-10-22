@@ -2,7 +2,7 @@
 % Please edit documentation in R/git_get_files.R
 \name{find_tree_sha_in_commit}
 \alias{find_tree_sha_in_commit}
-\title{Title}
+\title{Extract the tree's sha of a commit}
 \usage{
 find_tree_sha_in_commit(commit)
 }
@@ -10,5 +10,5 @@ find_tree_sha_in_commit(commit)
 \item{commit}{Commit JSON already converted to R list}
 }
 \description{
-Title
+Extract the tree's sha of a commit
 }

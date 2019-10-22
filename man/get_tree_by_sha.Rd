@@ -2,7 +2,7 @@
 % Please edit documentation in R/git_get_files.R
 \name{get_tree_by_sha}
 \alias{get_tree_by_sha}
-\title{Title}
+\title{Get all data about a tree}
 \usage{
 get_tree_by_sha(owner, repo, tree_sha)
 }
@@ -14,5 +14,5 @@ get_tree_by_sha(owner, repo, tree_sha)
 \item{tree_sha}{Sha of a the tree of interest}
 }
 \description{
-Title
+Get all data about a tree
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/git_get_files.R
 \name{get_commit_by_sha}
 \alias{get_commit_by_sha}
-\title{Title}
+\title{Get all data about a commit}
 \usage{
 get_commit_by_sha(owner, repo, commit_sha)
 }
@@ -14,5 +14,5 @@ get_commit_by_sha(owner, repo, commit_sha)
 \item{commit_sha}{Sha of a the commit of interest}
 }
 \description{
-Title
+Get all data about a commit
 }

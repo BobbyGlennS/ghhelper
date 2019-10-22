@@ -2,7 +2,7 @@
 % Please edit documentation in R/git_get_files.R
 \name{get_files_from_tree}
 \alias{get_files_from_tree}
-\title{Title}
+\title{List all files included in a tree}
 \usage{
 get_files_from_tree(tree)
 }
@@ -10,5 +10,6 @@ get_files_from_tree(tree)
 \item{tree}{Tree JSON already converted to R list}
 }
 \description{
-Title
+This function will recursively also list the files in the trees
+listed in the root tree and so on
 }

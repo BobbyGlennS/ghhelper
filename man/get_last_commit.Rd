@@ -2,7 +2,7 @@
 % Please edit documentation in R/git_get_files.R
 \name{get_last_commit}
 \alias{get_last_commit}
-\title{Title}
+\title{Get all data about the most recent commit}
 \usage{
 get_last_commit(owner, repo)
 }
@@ -12,5 +12,5 @@ get_last_commit(owner, repo)
 \item{repo}{Name of the Github Repo}
 }
 \description{
-Title
+Get all data about the most recent commit
 }

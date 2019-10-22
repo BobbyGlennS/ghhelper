@@ -2,7 +2,7 @@
 % Please edit documentation in R/git_get_issues.R
 \name{create_issue}
 \alias{create_issue}
-\title{Title}
+\title{Create an issue on a repo from R list data}
 \usage{
 create_issue(owner, repo, issue_content)
 }
@@ -14,5 +14,5 @@ create_issue(owner, repo, issue_content)
 \item{issue_content}{R List with issue content}
 }
 \description{
-Title
+Create an issue on a repo from R list data
 }
