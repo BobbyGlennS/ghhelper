@@ -33,3 +33,19 @@ create_issue <- function(owner, repo, issue_content) {
   url <- stringr::str_glue("/repos/{owner}/{repo}/issues")
   do.call(POST_gh, append(list(url=url), issue_content))
 }
+
+#' Close an issue
+#'
+#' @param owner Owner of the Github Repo (org or individual user)
+#' @param repo Name of the Github Repo
+#' @param issue_number Number id of the issue
+#'
+#' @return
+#' @export
+#'
+#' @examples
+close_issue <- function(owner, repo, issue_number) {
+  url <- stringr::str_glue("/repos/{owner}/{repo}/issues/{issue_number}")
+  do.call(PATCH_gh, append(list(url=url), list(state = "closed")))
+}
+
