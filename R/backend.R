@@ -22,7 +22,7 @@ gh_response_to_tibble <- function(gh_res) {
 #'
 #' @examples
 GET_gh <- function(url, res_type = "raw") {
-  api_res <- gh::gh(url, .method = "GET")
+  api_res <- gh::gh(url, .method = "GET", .limit = Inf)
 
   switch(res_type,
          "raw" = api_res,
