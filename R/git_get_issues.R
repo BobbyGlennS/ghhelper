@@ -2,17 +2,18 @@
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
+#' @param res_type Type of data returned
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #' get_issues("xvrdm", "ggrough")
-get_issues <- function(owner, repo) {
+get_issues <- function(owner, repo, res_type = "tibble") {
   GET_gh(
     stringr::str_glue("/repos/{owner}/{repo}/issues?",
                       "state=all", # Default is "open"
-    ))
+    ), res_type = res_type)
 }
 
 

@@ -2,14 +2,16 @@
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
+#' @param res_type Type of data returned
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_milestones <- function(owner, repo) {
+get_milestones <- function(owner, repo, res_type = "tibble") {
   GET_gh(
-    stringr::str_glue("/repos/{owner}/{repo}/milestones"))
+    stringr::str_glue("/repos/{owner}/{repo}/milestones"),
+    res_type = res_type)
 }
 
 

@@ -4,12 +4,14 @@
 \alias{POST_gh}
 \title{Title}
 \usage{
-POST_gh(url, ...)
+POST_gh(url, ..., res_type = "raw")
 }
 \arguments{
 \item{url}{Relative endpoint url for Github API}
 
 \item{...}{Named parameters to be sent as POST body content}
+
+\item{res_type}{Type of data returned}
 }
 \description{
 Title

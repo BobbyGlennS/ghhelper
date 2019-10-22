@@ -13,5 +13,7 @@ Imports:
     gh,
     purrr,
     stringr,
-    magrittr
+    magrittr,
+    tibble,
+    tidyr
 RoxygenNote: 6.1.1
