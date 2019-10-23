@@ -16,5 +16,6 @@ Imports:
     magrittr,
     tibble,
     tidyr,
-    lubridate
+    lubridate,
+    urltools
 RoxygenNote: 6.1.1

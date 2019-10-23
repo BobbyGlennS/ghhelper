@@ -2,6 +2,7 @@
 #'
 #' @param owner Owner of the Github Repo (org or individual user)
 #' @param repo Name of the Github Repo
+#' @param parameters List of query parameter to filter issues
 #' @param res_type Type of data returned
 #'
 #' @return
@@ -9,11 +10,17 @@
 #'
 #' @examples
 #' get_issues("xvrdm", "ggrough")
-get_issues <- function(owner, repo, res_type = "tibble") {
-  GET_gh(
-    stringr::str_glue("/repos/{owner}/{repo}/issues?",
-                      "state=all", # Default is "open"
-    ), res_type = res_type)
+get_issues <- function(owner, repo,
+                       parameters = NULL,
+                       res_type = "tibble") {
+  url <- stringr::str_glue("/repos/{owner}/{repo}/issues")
+  url <- urltools::param_set(url, "state", "all") # Default is "open"
+
+  for(key in names(parameters)) {
+    url <- urltools::param_set(url, key, parameters[[key]])
+  }
+
+  GET_gh(url, res_type = res_type)
 }
 
 

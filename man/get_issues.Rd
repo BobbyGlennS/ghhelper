@@ -4,12 +4,14 @@
 \alias{get_issues}
 \title{Get repo's issues}
 \usage{
-get_issues(owner, repo, res_type = "tibble")
+get_issues(owner, repo, parameters = NULL, res_type = "tibble")
 }
 \arguments{
 \item{owner}{Owner of the Github Repo (org or individual user)}
 
 \item{repo}{Name of the Github Repo}
+
+\item{parameters}{List of query parameter to filter issues}
 
 \item{res_type}{Type of data returned}
 }
