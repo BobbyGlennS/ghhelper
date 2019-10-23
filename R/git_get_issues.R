@@ -45,7 +45,23 @@ create_issue <- function(owner, repo, issue_content) {
 #'
 #' @examples
 close_issue <- function(owner, repo, issue_number) {
+  edit_issue(owner, repo, issue_number, list(state = "closed"))
+}
+
+#' Edit an issue
+#'
+#' @param owner Owner of the Github Repo (org or individual user)
+#' @param repo Name of the Github Repo
+#' @param issue_number Number id of the issue
+#' @param issue_content R List with issue content
+#'
+#' @return
+#' @export
+#'
+#' @examples
+edit_issue <- function(owner, repo, issue_number, issue_content) {
+  stopifnot(is.null(issue_content$url))
   url <- stringr::str_glue("/repos/{owner}/{repo}/issues/{issue_number}")
-  do.call(PATCH_gh, append(list(url=url), list(state = "closed")))
+  do.call(PATCH_gh, append(list(url=url), issue_content))
 }
 
