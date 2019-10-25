@@ -15,5 +15,5 @@ get_files_from_repo(owner, repo)
 Get the names of all files in repo
 }
 \examples{
-get_files_from_repo("xvrdm", "ggrough")
+get_files_from_repo(owner = "xvrdm", repo = "ggrough")
 }

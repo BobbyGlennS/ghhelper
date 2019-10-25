@@ -80,29 +80,42 @@ find_tree_sha_in_commit <- function(commit){
 #' This function will recursively also list the files in the trees
 #' listed in the root tree and so on
 #'
-#' @param tree Tree JSON already converted to R list
+#' @param tree_sha Tree JSON already converted to R list
+#' @param src_dir Directory path in which the tree files are
+#' @param owner Owner of the Github Repo (org or individual user)
+#' @param repo Name of the Github Repo
 #'
 #' @return
 #' @export
 #'
 #' @examples
-get_files_from_tree <- function(tree) {
-  dirs <- tree %>%
-    purrr::pluck("tree") %>%
-    purrr::keep( ~ .$type == "tree") %>%
-    purrr::map_chr("url")
+get_files_from_tree_sha <- function(tree_sha, src_dir = NULL, owner, repo) {
+  tree <- ghhelper::get_tree_by_sha(owner, repo, tree_sha)
 
-  if (length(dirs) > 0) {
-    nested_files <- purrr::map(dirs, get_files_from_tree)
-  } else {
-    nested_files <- list()
+  tree_list <- purrr::pluck(tree, "tree")
+
+  tree_tib <- tibble::tibble(tree_files = tree_list) %>%
+    tidyr::unnest_wider(col = "tree_files")
+
+  if(!is.null(src_dir)) {
+    tree_tib$path <- fs::path(src_dir, tree_tib$path)
   }
 
-  files <- tree %>%
-    purrr::pluck("tree") %>%
-    purrr::map("path")
+  dirs <- dplyr::filter(tree_tib, .data$type == "tree")
 
-  append(files, purrr::flatten(nested_files))
+  if (nrow(dirs) > 0) {
+    nested_files <- purrr::map2_df(.x = dirs$sha,
+                                   .y = dirs$path,
+                                   .f = get_files_from_tree_sha,
+                                   owner, repo)
+  } else {
+    nested_files <- tibble::tibble()
+  }
+
+  files <- dplyr::filter(tree_tib, .data$type == "blob")
+
+  dplyr::bind_rows(files, nested_files) %>%
+    dplyr::mutate(name = fs::path_file(.data$path))
 }
 
 #' Get the names of all files in repo
@@ -114,14 +127,11 @@ get_files_from_tree <- function(tree) {
 #' @export
 #'
 #' @examples
-#' get_files_from_repo("xvrdm", "ggrough")
+#' get_files_from_repo(owner = "xvrdm", repo = "ggrough")
 get_files_from_repo <- function(owner, repo) {
   last_commit <- get_last_commit(owner, repo)
   last_tree_sha <- find_tree_sha_in_commit(last_commit)
-  current_repo_tree <- get_tree_by_sha(owner, repo, last_tree_sha)
-  current_repo_files <- get_files_from_tree(current_repo_tree) %>%
-    purrr::flatten_chr()
-  current_repo_files
+  get_files_from_tree_sha(last_tree_sha, owner = owner, repo = repo)
 }
 
 
